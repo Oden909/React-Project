@@ -1,0 +1,45 @@
+.footer {
+    padding: 20px 40px;
+    color: #282828;
+}
+
+.contacts {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px; 
+    row-gap: 20px;
+}
+
+.cards_list {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.socialIcon {
+    width: 38px;
+    height: 38px;
+}
+
+.cards {
+    background-color: #F1F3F4;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.cards p {
+    font-size: 20px;
+    color: #8B8B8B;
+    font-weight: 500;
+}
+
+.cards span {
+    font-size: 40px;
+    font-weight: 600;
+    color: #282828;
+}
+
+

@@ -1,0 +1,24 @@
+.categoryList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.categoryCard {
+  text-align: center;
+}
+
+.categoryImage {
+  width: 316px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.categoryTitle {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #282828;
+}

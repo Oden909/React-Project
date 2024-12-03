@@ -1,0 +1,57 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoImage {
+    width: 70px;
+    height: 70px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: #282828; 
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.link:hover {
+    color: #339933;
+}
+
+.activeLink {
+    color: #339933;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.cart {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cartIcon {
+    width: 48px;
+    height: 48px;
+}
+
+
