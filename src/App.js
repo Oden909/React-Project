@@ -3,15 +3,21 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CategoriesPage from './pages/CategoriesPage';
+import CategoryProductsPage from './pages/CategoryProductsPage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProductPage from './pages/ProductPage';
 
 const App = () => (
   <BrowserRouter>
-    <Header />
+    <Header/>
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/categories" element={<CategoriesPage/>}/>
+      <Route path="/categories/:categoryId" element={<CategoryProductsPage/>}/>
+      <Route path="/products/:productId" element={<ProductPage />} />
+      <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
-    <Footer />
+    <Footer/>
   </BrowserRouter>
 );
 

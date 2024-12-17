@@ -36,7 +36,7 @@ const categorySlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       });
-  },
+  }, 
 });
 
 

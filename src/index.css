@@ -23,3 +23,7 @@ h1 {
   color: #282828;
   font-weight: 700;
 }
+
+a {
+  text-decoration: none;
+}

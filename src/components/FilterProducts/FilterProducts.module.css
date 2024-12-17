@@ -1,0 +1,76 @@
+.filters {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.filterBlock {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.filterLabel {
+    font-size: 20px;
+    font-weight: 600;
+    color: #282828;
+    display: block;
+}
+
+input {
+    margin-bottom: 0;
+}
+
+input[type="number"] {
+    padding: 5px;
+    font-size: 16px;
+    color: #8B8B8B;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    width: 112px; 
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #339933;
+    border-color: #339933;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2713';
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+select {
+    background-color: #FFFFFF;
+    color: #282828;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    padding: 5px 30px ;
+    border-radius: 4px;
+}
+
