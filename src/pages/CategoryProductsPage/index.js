@@ -14,9 +14,11 @@ const CategoryProductsPage = () => {
   const categories = useSelector((state) => state.categories.categories);
   const products = useSelector((state) => state.products.products);
   const productsStatus = useSelector((state) => state.products.status);
+
   const currentCategory = categories.find((category) => category.id === Number(categoryId));
 
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([]);
 
   useEffect(() => {
     if (productsStatus === 'idle') {
@@ -25,10 +27,17 @@ const CategoryProductsPage = () => {
     dispatch(fetchCategories());
   }, [dispatch, productsStatus]);
 
-  const applyFilters = ({ priceFrom, priceTo, onlyDiscounted }) => {
-    let updatedProducts = products.filter(
+  useEffect(() => {
+    const categoryProducts = products.filter(
       (product) => product.categoryId === Number(categoryId)
     );
+    setOriginalProducts([...categoryProducts]);
+    setFilteredProducts([...categoryProducts]);
+  }, [products, categoryId]);
+
+  const applyFilters = ({ priceFrom, priceTo, onlyDiscounted }) => {
+    let updatedProducts = [...originalProducts];
+
     if (priceFrom) {
       updatedProducts = updatedProducts.filter((product) => product.price >= priceFrom);
     }
@@ -48,29 +57,29 @@ const CategoryProductsPage = () => {
     let sortedProducts = [...filteredProducts];
 
     if (option === 'newest') {
-      sortedProducts = sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); //Кстати там дата создания везде одинаковая, так что это не особо нужно
     } 
     else if (option === 'price-desc') {
-      sortedProducts = sortedProducts.sort((a, b) => b.price - a.price);
+      sortedProducts.sort((a, b) => b.price - a.price);
     } 
     else if (option === 'price-asc') {
-      sortedProducts = sortedProducts.sort((a, b) => a.price - b.price);
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } 
+    else if (option === 'default') {
+      sortedProducts = [...originalProducts];
     }
     setFilteredProducts(sortedProducts);
   };
-
-  useEffect(() => {
-    setFilteredProducts(
-      products.filter((product) => product.categoryId === Number(categoryId))
-    );
-  }, [products, categoryId]);
 
   if (productsStatus === 'loading') return <div>Loading products...</div>;
 
   return (
     <div className={style.categoryProductsPage}>
-      <h1>{currentCategory.title}</h1>
-      <FilterProducts onFilterChange={applyFilters} onSortChange={handleSortChange} />
+    <h1>{currentCategory.title}</h1>
+      <FilterProducts 
+        onFilterChange={applyFilters} 
+        onSortChange={handleSortChange} 
+      />
       <CategoryProducts products={filteredProducts} />
     </div>
   );

@@ -7,11 +7,15 @@ import homepageBanner from '../../assets/homepage_banner.jpg';
 import formBackgroundImg from '../../assets/form_back.png';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import SalesList from '../../components/SalesList';
+import { fetchProducts } from '../../store/productSlice';
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.categories);
-  const status = useSelector((state) => state.categories.status);
+  const categoriesStatus = useSelector((state) => state.categories.status);
+  const products = useSelector((state) => state.products.products);
+  const productsStatus = useSelector((state) => state.products.status);
 
   const {
     register,
@@ -21,10 +25,13 @@ const HomePage = () => {
   } = useForm();
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (categoriesStatus === 'idle') {
       dispatch(fetchCategories());
     }
-  }, [status, dispatch]);
+    if (productsStatus === 'idle') {
+      dispatch(fetchProducts());
+    }
+  }, [categoriesStatus, productsStatus, dispatch]);
 
   const onSubmit = (data) => {
     console.log('Form Data:', data);
@@ -39,7 +46,9 @@ const HomePage = () => {
         <img src={homepageBanner} alt="Banner" className={style.bannerImage} />
         <div className={style.bannerContent}>
           <h1>Amazing Discounts on Garden Products!</h1>
-          <button className={style.checkOutButton}>Check Out</button>
+          <NavLink to="/sales">
+            <button className={style.checkOutButton}>Check Out</button>
+          </NavLink>
         </div>
       </section>
 
@@ -50,9 +59,11 @@ const HomePage = () => {
             <button className={style.viewAllButton}>All Categories</button>
           </NavLink>
         </div>
-        {status === 'loading' && <p>Loading...</p>}
-        {status === 'failed' && <p>Error loading categories</p>}
-        {status === 'succeeded' && <CategoryList categories={categories.slice(0, 4)} />}
+        {categoriesStatus === 'loading' && <p>Loading...</p>}
+        {categoriesStatus === 'failed' && <p>Error loading categories</p>}
+        {categoriesStatus === 'succeeded' && (
+          <CategoryList categories={categories.slice(0, 4)} />
+        )}
       </section>
 
       <section className={style.discountForm}>
@@ -108,6 +119,19 @@ const HomePage = () => {
         </div>
       </section>
 
+      <section className={style.sales}>
+        <div className={style.salesTopMenu}>
+          <h1>Sale</h1>
+          <NavLink to="/sales">
+            <button className={style.viewAllButton}>View All Sales</button>
+          </NavLink>
+        </div>
+        {productsStatus === 'loading' && <p>Loading...</p>}
+        {productsStatus === 'failed' && <p>Error loading products</p>}
+        {productsStatus === 'succeeded' && (
+          <SalesList products={products.filter((product) => product.discont_price).slice(0, 4)} />
+        )}
+      </section>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './FilterProducts.module.css';
 
-const FilterProducts = ({ onFilterChange, onSortChange }) => {
+const FilterProducts = ({ onFilterChange, onSortChange, hideDiscountFilter }) => {
   const [priceFrom, setPriceFrom] = useState('');
   const [priceTo, setPriceTo] = useState('');
   const [onlyDiscounted, setOnlyDiscounted] = useState(false);
@@ -35,7 +35,7 @@ const FilterProducts = ({ onFilterChange, onSortChange }) => {
           placeholder="from"
         />
       </div>
-
+      
       <div className={style.filterBlock}>
         <label className={style.filterLabel}></label>
         <input
@@ -52,9 +52,9 @@ const FilterProducts = ({ onFilterChange, onSortChange }) => {
           placeholder="to"
         />
       </div>
-
-      <div className={style.filterBlock}>
-        <label className={style.filterLabel}>Discounted items</label>
+      {!hideDiscountFilter && (
+        <div className={style.filterBlock}>
+          <label className={style.filterLabel}>Discounted items</label>
           <input
             type="checkbox"
             checked={onlyDiscounted}
@@ -67,7 +67,8 @@ const FilterProducts = ({ onFilterChange, onSortChange }) => {
               });
             }}
           />
-      </div>
+        </div>
+      )}
 
       <div className={style.filterBlock}>
         <label className={style.filterLabel}>Sorted</label>

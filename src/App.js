@@ -6,6 +6,8 @@ import CategoriesPage from './pages/CategoriesPage';
 import CategoryProductsPage from './pages/CategoryProductsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProductPage from './pages/ProductPage';
+import AllProductsPage from './pages/AllProductsPage';
+import DiscountedProductsPage from './pages/DiscountedProductsPage';
 
 const App = () => (
   <BrowserRouter>
@@ -14,7 +16,9 @@ const App = () => (
       <Route path="/" element={<HomePage/>}/>
       <Route path="/categories" element={<CategoriesPage/>}/>
       <Route path="/categories/:categoryId" element={<CategoryProductsPage/>}/>
-      <Route path="/products/:productId" element={<ProductPage />} />
+      <Route path="/products/:productId" element={<ProductPage/>} />
+      <Route path="/products" element={<AllProductsPage/>} />
+      <Route path="/sales" element={<DiscountedProductsPage/>} />
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
     <Footer/>

@@ -47,7 +47,6 @@
 
 .categories {
   padding: 40px;
-  position: relative;
 }
 
 .categories h2 {
@@ -163,6 +162,16 @@ input:focus {
 .error {
   color: red;
   font-size: 14px;
+}
+
+.salesTopMenu{ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sales {
+  padding: 40px;
 }
 
 
